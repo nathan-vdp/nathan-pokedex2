@@ -1,0 +1,9 @@
+#color {
+  background-color: #FA7246;
+  color: #fff8f7;
+  animation: colorChange 8s infinite alternate;
+}
+
+body {
+  background-size: cover;
+}/*# sourceMappingURL=style.css.map */

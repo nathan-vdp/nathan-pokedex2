@@ -1,0 +1,16 @@
+$orange-500: #FA7246;
+$red-500: #f44336;
+
+#color {
+  background-color: $orange-500;
+  color: lighten($red-500, 40%); // Lighten the text color for better visibility
+
+  animation: colorChange 8s infinite alternate; // Increased the duration to 8s
+}
+
+body {
+    background-size: cover;
+}
+
+
+
