@@ -1,7 +1,16 @@
 <script>
 
   export let name;
-  import { fetchPokemonData } from "../utils/fetchPokemonData";
+
+//   const fetchPokemonData = async (name) => {
+//   return fetch(`https://pokeapi.co/api/v2/pokemon/${name}`).then((res) =>
+//     res.json()
+//   );
+// };
+
+import { fetchPokemonData } from "../utils/fetchPokemonData";
+import loadingGif from "../assets/loading.gif";
+
   let flavorText = "";
   import EvolutionChain from "./EvolutionChain.svelte";
   import Moves from "./Moves.svelte";
@@ -71,19 +80,25 @@
 
 
 {#await fetchPokemonData(name)}
-  <p>Loading {name}....</p>
+<div class="flex justify-center items-center">
+  <img
+    src={loadingGif}
+    alt="loading"
+    class="mt-10 w-72"
+  />
+</div>
 {:then data}
-
-  <h1 class="mb23111 mx-2">
+<div class="text-center">
+  <h1 class="mx-2">
     <span class="text-3xl font-bold">{name}</span>
     <span class="text-3xl text-slate-500 text-muted"
       >#{data.id.toString().padStart(4, "0")}</span
     >
     {#if data["sprites"]["other"]["official-artwork"]["front_shiny"]}
-       <label class="relative inline-flex items-center cursor-pointer mx-">
+       <label class="relative inline-flex items-center cursor-pointer mx-2">
       <input on:click={() => (shinyToggle = !shinyToggle)} type="checkbox" value="" class="sr-only peer">
-      <div class="w-11 me-5 h-6 bg-gray-200 peer-focus:outline-none   rounded-full peer  peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-red-600"></div>
-      <span class="ml-3 text-sm font-medium">Shiny</span>
+      <div class="w-11 me-2 h-6 bg-gray-200 peer-focus:outline-none   rounded-full peer  peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-red-600"></div>
+      <span class="text-sm font-medium">Shiny</span>
     </label>
     {/if}
 
@@ -99,6 +114,7 @@
       alt={data.name}
     />
     </div>
+  </div>
     <div>
       <table class="table-auto">
         <thead class="bg-red-600">
@@ -115,9 +131,9 @@
               {#each data.types as type}
                 <span
                   class="px-3 py-1 rounded mx-1"
-                  style="background-color: {getTypeColor(type.type.name)};"
+                  style="background-color: {getTypeColor(type)};"
                 >
-                  {type.type.name + " "}
+                  {type + " "}
                 </span>
               {/each}
             </td>
