@@ -13,6 +13,8 @@
 
   let searchValue = "";
 
+  let selectedType = "All types";
+
   // let offset = 0;
 
   // const increaseOffset = () => {
@@ -24,14 +26,14 @@
   // };
 </script>
 
-<Navbar bind:searchValue bind:offset bind:limit />
+<Navbar bind:searchValue bind:offset bind:limit bind:selectedType />
 <main class="flex flex-col justify-center items-center p-4">
   <Router>
     <Meow />
     <Route to="/">
       <div class="flex justify-center items-center w-fit">
       </div>
-      <PokemonGrid {offset} {limit} {searchValue}/></Route
+      <PokemonGrid {offset} {limit} {searchValue} {selectedType}/></Route
     >
     <Route path="/:name" let:params>
       <Pokemon name={params.name} />
