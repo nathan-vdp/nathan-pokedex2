@@ -1,5 +1,5 @@
 <script>
-  import { Link } from "svelte-navigator";
+  // import { Link } from "svelte-navigator";
   export let searchValue = "";
 
   function handleInput(event) {
