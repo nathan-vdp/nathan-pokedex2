@@ -9,27 +9,34 @@
   export let offset;
   export let limit;
   export let searchValue;
+  export let selectedType;
 
   let pokemons = [];
   let filteredPokemons = [];
 
   $: fetchPokemons = async () => {
-    return fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`) // TODO: FIX OFFSET!!!!11!11!!1
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        pokemons = data.results;
-        return data.results;
-      });
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`);
+    const data = await response.json();
+    pokemons = await Promise.all(data.results.map(async pokemon => {
+      const pokemonData = await fetchPokemonData(pokemon.name);
+      return { ...pokemon, types: pokemonData.types }; // store the types in the pokemons array
+    }));
   };
 
   $: {
-    filteredPokemons = searchValue
-      ? pokemons.filter(pokemon => pokemon.name.includes(searchValue))
-      : pokemons;
+    filteredPokemons = pokemons.filter(pokemon => {
+      if (searchValue && !pokemon.name.includes(searchValue)) {
+        return false;
+      }
+      if (selectedType !== "All types" && !pokemon.types.includes(selectedType.toLowerCase())) {
+        return false;
+      }
+      return true;
+    });
   }
 
   let flavorText = "";
+  let flavorTextLoaded = false;
 
   async function fetchPokemonFlavorText(pokemonName) {
     const response = await fetch(
@@ -48,6 +55,7 @@
         .replace(" -\n", " - ")
         .replace("-\n", "-")
         .replace("\n", " ");
+        flavorTextLoaded = true;
     } else {
       flavorText = "No flavor text found";
     }
@@ -55,7 +63,13 @@
 </script>
 
 {#await fetchPokemons()}
-
+<div class="flex justify-center items-center">
+  <img
+    src={loadingGif}
+    alt="loading"
+    class="mt-10 w-72"
+  />
+</div>
 {:then}
   <div
     class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-10 my-8"
@@ -89,9 +103,29 @@
           <div
             style="height: 400px"
             class="relative bg-white rounded-lg shadow-lg flex flex-col justify-between items-center overflow-hidden group"
+            class:fire={data.types.includes('fire')}
+            class:water={data.types.includes('water')}
+            class:grass={data.types.includes('grass')}
+            class:electric={data.types.includes('electric')}
+            class:ice={data.types.includes('ice')}
+            class:fighting={data.types.includes('fighting')}
+            class:poison={data.types.includes('poison')}
+            class:ground={data.types.includes('ground')}
+            class:flying={data.types.includes('flying')}
+            class:psychic={data.types.includes('psychic')}
+            class:bug={data.types.includes('bug')}
+            class:rock={data.types.includes('rock')}
+            class:ghost={data.types.includes('ghost')}
+            class:dragon={data.types.includes('dragon')}
+            class:dark={data.types.includes('dark')}
+            class:steel={data.types.includes('steel')}
+            class:fairy={data.types.includes('fairy')}
+            class:normal={data.types.includes('normal')}
           >
             <img
-              on:mouseenter={() => fetchPokemonFlavorText(pokemon.name)}
+              on:mouseenter={() => {
+                flavorTextLoaded = false
+                fetchPokemonFlavorText(pokemon.name)}}
               src={data["sprites"]["other"]["official-artwork"][
                 "front_default"
               ]}
@@ -105,9 +139,17 @@
                 {pokemon.name}
               </h1>
               <div class="flex-grow flex items-center justify-center">
-                <p class="w-8/12 m-auto">
-                  {flavorText}
-                </p>
+                {#if flavorTextLoaded}
+                  <p class="w-8/12 m-auto">
+                    {flavorText}
+                  </p>
+                {:else}
+                  <img
+                    src={loadingGif}
+                    alt="loading"
+                    class="w-72"
+                  />
+                {/if}
               </div>
             </div>
           </div>

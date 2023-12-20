@@ -7,7 +7,7 @@
   }
 
   let generations = [
-    { name: "All", offest: 0, limit: 1017 },
+    { name: "All generations", offest: 0, limit: 1017 },
     { name: "Gen 1", offset: 0, limit: 151 },
     { name: "Gen 2", offset: 151, limit: 100 },
     { name: "Gen 3", offset: 251, limit: 135 },
@@ -20,12 +20,39 @@
   ];
   let selectedGeneration = generations[0];
 
+  let types = [
+    "All types",
+    "Normal",
+    "Fire",
+    "Water",
+    "Grass",
+    "Electric",
+    "Ice",
+    "Fighting",
+    "Poison",
+    "Ground",
+    "Flying",
+    "Psychic",
+    "Bug",
+    "Rock",
+    "Ghost",
+    "Dark",
+    "Dragon",
+    "Steel",
+    "Fairy",
+  ];
+
+  export let selectedType = types[0];
   export let offset = selectedGeneration.offset;
   export let limit = selectedGeneration.limit;
 
   $: {
     offset = selectedGeneration.offset;
     limit = selectedGeneration.limit;
+  }
+
+  $: {
+    console.log(selectedType);
   }
 </script>
 
@@ -48,6 +75,13 @@
         <option value={generation}>{generation.name}</option>
       {/each}
     </select>
+        </li>
+        <li>
+          <select class="rounded-md h-9 bg-transparent w-50 mb-3 text-black ml-6 border-none" bind:value={selectedType}>
+          {#each types as type}
+          <option value={type}>{type}</option>
+        {/each}
+      </select>
         </li>
         <li>
           <input class="text-center font-light h-10 w-52 ml-5 rounded-md focus:outline-none" type="text" placeholder="Search Pokémon" on:input={handleInput} bind:value={searchValue} />
