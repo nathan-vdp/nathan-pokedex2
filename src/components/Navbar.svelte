@@ -68,7 +68,7 @@
         </svg>
     </button>
     <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-      <ul class="text-gray-300 ml-2 font-medium flex flex-col p-4 md:p-0 mt-4 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0">
+      <ul class="text-gray-900 ml-2 font-medium flex flex-col p-4 md:p-0 mt-4 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0">
         <li>
           <select class="rounded-md h-9 bg-transparent w-50 mb-3 text-black ml-6 border-none" bind:value={selectedGeneration}>
       {#each generations as generation (generation.name)}
