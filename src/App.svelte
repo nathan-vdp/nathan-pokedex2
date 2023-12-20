@@ -36,7 +36,9 @@
       <PokemonGrid {offset} {limit} {searchValue} {selectedType}/></Route
     >
     <Route path="/:name" let:params>
+      <div class="flex flex-col items-center">
       <Pokemon name={params.name} />
+    </div>
     </Route>
   </Router>
 </main>
