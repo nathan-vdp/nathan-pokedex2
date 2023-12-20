@@ -36,6 +36,7 @@
   }
 
   let flavorText = "";
+  let flavorTextLoaded = false;
 
   async function fetchPokemonFlavorText(pokemonName) {
     const response = await fetch(
@@ -54,6 +55,7 @@
         .replace(" -\n", " - ")
         .replace("-\n", "-")
         .replace("\n", " ");
+        flavorTextLoaded = true;
     } else {
       flavorText = "No flavor text found";
     }
@@ -121,7 +123,9 @@
             class:normal={data.types.includes('normal')}
           >
             <img
-              on:mouseenter={() => fetchPokemonFlavorText(pokemon.name)}
+              on:mouseenter={() => {
+                flavorTextLoaded = false
+                fetchPokemonFlavorText(pokemon.name)}}
               src={data["sprites"]["other"]["official-artwork"][
                 "front_default"
               ]}
@@ -135,9 +139,17 @@
                 {pokemon.name}
               </h1>
               <div class="flex-grow flex items-center justify-center">
-                <p class="w-8/12 m-auto">
-                  {flavorText}
-                </p>
+                {#if flavorTextLoaded}
+                  <p class="w-8/12 m-auto">
+                    {flavorText}
+                  </p>
+                {:else}
+                  <img
+                    src={loadingGif}
+                    alt="loading"
+                    class="w-72"
+                  />
+                {/if}
               </div>
             </div>
           </div>
