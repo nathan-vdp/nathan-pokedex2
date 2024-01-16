@@ -23,7 +23,7 @@ This project was a collaborative effort by Saman, Nathan, Jair, and Youssef. Her
 - **Saman**: Made both main page and pokedex entry page based on Nathan's wiresframes, complete with search and filter functionality, stats, moves, shiny toggle and evolution chain
 - **Nathan**: Used his previous Pokedex project as a base, made navbar, made wireframes, and added some styling to the Pokédex entry page
 - **Jair**: Did some styling on navbar and added SCSS
-- **Youssef**: Added konami code easter egg with functional Pokemon FireRed emulation, added background image, and helped a lot with brainstorming
+- **Youssef**: Added konami code easter egg with fully functional Pokemon FireRed emulation, added background image, and helped a lot with brainstorming
 
 ## Clone the Repository
 
