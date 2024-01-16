@@ -5,6 +5,10 @@
 
 Welcome to our Pokedex project! This web application allows users to explore and learn about different Pokemon, their types, abilities, and more. To get started, follow the instructions below.
 
+## Live Website
+
+You can access the live website at [teampokedex.netlify.app](https://teampokedex.netlify.app/).
+
 ## Table of Contents
 
 - [Individual Contributions](#individual-contributions)
@@ -19,7 +23,7 @@ This project was a collaborative effort by Saman, Nathan, Jair, and Youssef. Her
 - **Saman**: Made both main page and pokedex entry page based on Nathan's wiresframes, complete with search and filter functionality, stats, moves, shiny toggle and evolution chain
 - **Nathan**: Used his previous Pokedex project as a base, made navbar, made wireframes, and added some styling to the Pokédex entry page
 - **Jair**: Did some styling on navbar and added SCSS
-- **Youssef**: Added konami code easter egg to project with functional Pokemon FireRed emulation, helped a lot with brainstorming
+- **Youssef**: Added konami code easter egg with functional Pokemon FireRed emulation, added background image, and helped a lot with brainstorming
 
 ## Clone the Repository
 
