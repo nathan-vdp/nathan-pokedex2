@@ -1,6 +1,6 @@
 # Pokedex README
 
-> **Important Notice**: This project was initially developed as part of a school coding competition within a private repository. It was later imported to GitHub, which means that the vast majority of the Git commit history is not available here. However, we have however documented our individual contributions in this README to provide insight into the development process.
+> **Important Notice**: This project was initially developed as part of a school coding competition within a private repository. It was later imported to GitHub, which means that the vast majority of the Git commit history is not available here. However, we have documented our individual contributions in this README to provide insight into the development process.
 
 
 Welcome to our Pokedex project! This web application allows users to explore and learn about different Pokemon, their types, abilities, and more. To get started, follow the instructions below.
@@ -53,6 +53,12 @@ npm run dev
 ```
 
 This will start a local development server, and you can access the Pokedex web application by opening your browser and navigating to [http://localhost:3000](http://localhost:3000).
+
+## Preview video
+
+https://github.com/team-project-Pokedex/teampokedex/assets/25375434/973a0c11-7404-4494-9716-3f3cafd11866
+
+
 
 
 Happy exploring, and catch 'em all! 🚀
